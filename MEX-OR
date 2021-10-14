@@ -72,7 +72,8 @@ int main(void){
             continue;
         }
         
-    /* if the number 'n' is of the form (2^k - 1), then taking OR of all the values from [0 to n] will result in 'n'. So MEX will be 'n+1'.
+    /* 
+    If the number 'n' is of the form (2^k - 1), then taking OR of all the values from [0 to n] will result in 'n'. So MEX will be 'n+1'.
     
     But when the number is not of the form (2^k - 1), then taking OR of all the values from [0 to n] will result in (2^(k+1)), which will be greater than x. 
     Therefore, we have to take OR of few values only. Through observation we can see that if we take OR of all the values from [0 to (2^(k-1))], where k = number of binary 
