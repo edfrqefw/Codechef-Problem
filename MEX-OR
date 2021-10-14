@@ -72,6 +72,14 @@ int main(void){
             continue;
         }
         
+    /* if the number 'n' is of the form (2^k - 1), then taking OR of all the values from [0 to n] will result in 'n'. So MEX will be 'n+1'.
+    
+    But when the number is not of the form (2^k - 1), then taking OR of all the values from [0 to n] will result in (2^(k+1)), which will be greater than x. 
+    Therefore, we have to take OR of few values only. Through observation we can see that if we take OR of all the values from [0 to (2^(k-1))], where k = number of binary 
+    digits of the number 'n', then the MEX we will get will be maximum which is '2^k'. Other permutations will result in OR values greater than x (which we can't take) or 
+    values smaller than the actual answer (happens when we skip numbers between [0, n]).
+    */
+    
         int digit1 = int(log(n)/log(2));
         int digit2 = int(log(n+1)/log(2));
         
