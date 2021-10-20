@@ -1,0 +1,13 @@
+Problem Name: Minimise the Size 
+Problem Tag: MINSZ
+Link: https://www.codechef.com/problems/MINSZ
+
+Question
+Consider an array A={a1,a2,...,an} of size n≥1. If ak=2x−1 for all 1≤k≤n, for some integer x (1≤x≤60), then A is called interesting array. You are given a number C. 
+Find any interesting array A of minimum possible size such that a1⨁a2⨁...⨁an=C, where ⨁ represents bitwise XOR operation. If there exists multiple such arrays, 
+output any one.
+
+Video Link: https://youtu.be/2m6PHHda7S4
+
+Solution
+
