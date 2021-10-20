@@ -3,8 +3,8 @@ Problem Tag: INTCONCA
 Link: https://www.codechef.com/problems/INTCONCA
 
 Question
-Concatenation of two integers is obtained as follows: First, convert both integers to strings. Then concatenate both strings into one and convert this concatenated string back 
-to integer. For example, concatenation of 6 and 7 is CONC(6,7)=67, concatenation of 123 and 45 is CONC(123,45)=12345. You are given an array A consisting of N integers. 
+Concatenation of two integers is obtained as follows: First, convert both integers to strings. Then concatenate both strings into one and convert this concatenated string 
+back to integer. For example, concatenation of 6 and 7 is CONC(6,7)=67, concatenation of 123 and 45 is CONC(123,45)=12345. You are given an array A consisting of N integers. 
 You are also given two integers L and R. Find the number of pairs (i, j) such that 1≤i,j≤N and L ≤ CONC(Ai,Aj) ≤ R
 Note: Since the size of the input and output is large, please use fast input-output methods.
 
