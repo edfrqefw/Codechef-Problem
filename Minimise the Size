@@ -7,11 +7,15 @@ Consider an array A={a1,a2,...,an} of size n≥1. If ak=2x−1 for all 1≤k≤n
 Find any interesting array A of minimum possible size such that a1⨁a2⨁...⨁an=C, where ⨁ represents bitwise XOR operation. If there exists multiple such arrays, 
 output any one.
 
-Video Link: https://youtu.be/2m6PHHda7S4
+Video Link: https://youtu.be/mjTvSPxN2Vo
 
 Solution
 
 APPROACH 1
+
+
+
+APPROACH 2
 import java.util.*;
 import java.lang.*;
 import java.io.*;
