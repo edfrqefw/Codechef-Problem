@@ -48,7 +48,8 @@ class Codechef {
 
 			    if(((num & n) >> i) == 1){
 				if(al.size() % 2 == 0){
-				    // if we xor all the numbers present in the ArrayList, then at ith position we will get '0' (as number of elements present are even) but we want 1. So we have to add a number to change the bit
+				    // if we xor all the numbers present in the ArrayList, then at ith position we will get '0' (as number of elements present are even) but 
+                                    // we want 1. So we have to add a number to change the bit
 
 				    // as we want all 1's from ith bit we can take a number which is 2^(i+1) and subtract 1 to get all 1's from ith bit
 				    long k = 1L << (i + 1);
@@ -58,7 +59,8 @@ class Codechef {
 			    }
 			    else{
 				if(al.size() % 2 == 1){
-				    // if we xor all the numbers present in the ArrayList, then at ith position we will get '1' (as number of elements present are odd) but we want 0. So we have to add a number to change the bit
+				    // if we xor all the numbers present in the ArrayList, then at ith position we will get '1' (as number of elements present are odd) but 
+                                    // we want 0. So we have to add a number to change the bit
 
 				    // as we want all 1's from ith bit we can take a number which is 2^(i+1) and subtract 1 to get all 1's from ith bit
 				    long k = 1L << (i + 1);
