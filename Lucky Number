@@ -8,7 +8,6 @@ the lottery if at least one of the digits of the lottery ticket is 7.
 Given three digits A, B, and C of the lottery ticket, tell whether Chef wins something or not?
 
 
-
 Solution
 
 #include <bits/stdc++.h>
