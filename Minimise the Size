@@ -10,6 +10,10 @@ output any one.
 Editorial Link: https://discuss.codechef.com/t/minsz-editorial/95266
 Video Link: https://youtu.be/mjTvSPxN2Vo
 
+
+Time Complexity: O(60) = O(1) for each test case
+Space Complexity: O(60) = O(1) for each test case
+
 Solution
 
 APPROACH 1
@@ -24,7 +28,7 @@ int main(void) {
     cin.tie(0);    cout.tie(0);
     int t;    cin >> t;
     while (t--) {
-        ll n;        cin >> n;
+        ll n;   cin >> n;
 
         ll curr_xor = 0;
         std::vector <ll> v;
