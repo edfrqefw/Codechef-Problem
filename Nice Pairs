@@ -1,82 +1,67 @@
-Problem Name: Nice Pairs
-Problem Tag: NPAIRS
-Link: https://www.codechef.com/problems/NPAIRS
+Problem Name: Minimise the Size 
+Problem Tag: MINSZ
+Link: https://www.codechef.com/problems/MINSZ
 
 Question
-Given a string S of length N containing only numeric characters, find the number of Nice Pairs. A Nice Pair is a pair of indices - (i,j) such that 1≤i<j≤N and j−i=|Sj−Si|
+Consider an array A={a1,a2,...,an} of size n≥1. If ak=2x−1 for all 1≤k≤n, for some integer x (1≤x≤60), then A is called interesting array. You are given a number C. 
+Find any interesting array A of minimum possible size such that a1⨁a2⨁...⨁an=C, where ⨁ represents bitwise XOR operation. If there exists multiple such arrays, 
+output any one.
 
-Editorial Link: https://discuss.codechef.com/t/npairs-editorial/95272
+Editorial Link: https://discuss.codechef.com/t/minsz-editorial/95266
+Video Link: https://youtu.be/mjTvSPxN2Vo
+
+
+Time Complexity: O(60) = O(1) for each test case
+Space Complexity: O(60) = O(1) for each test case
 
 Solution
 
 APPROACH 1
+#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+using namespace std;
+typedef long long ll;
 
-import java.util.*;
-import java.lang.*;
-import java.io.*;
+int main(void) {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);    cout.tie(0);
+    int t;    cin >> t;
+    while (t--) {
+        ll n;   cin >> n;
 
-class Codechef {
-	public static void main (String[] args) throws java.lang.Exception	{
-		// your code goes here
-		Scanner scn = new Scanner(System.in);
-		int t = scn.nextInt();
-		StringBuilder sb = new StringBuilder();
-		while(t-- > 0){
-		    int n = scn.nextInt();
-		    scn.nextLine();
-		    String str = scn.nextLine();
+        ll curr_xor = 0;
+        std::vector <ll> v;
+        for (int i = 60; i >= 0; i--) {
+            ll b1 = (1ll << i) & n;
+            ll b2 = (1ll << i) & curr_xor;
 
-            /* 
-            we can write, j - i == |sj - si| as
-                1. j - i = sj - si  => j - sj = i - si
-                2. j - i = si - sj  => j + sj = i + si
-                
-            so we will store all indexes result in 2 different hashmaps and find the equal pairs
-		    */
-		    
-		    HashMap<Long, Long> map1 = new HashMap<>();
-		    HashMap<Long, Long> map2 = new HashMap<>();
-		    for(int i=0; i<n; i++){
-		        int val  = str.charAt(i) - '0';
-		        long diff1 = i + 1 - val;
-		        long diff2 = i + 1 + val;
-		        
-		        map1.put(diff1, map1.getOrDefault(diff1, 0L) + 1L);
-		        map2.put(diff2, map2.getOrDefault(diff2, 0L) + 1L);
-		    }
-		    
-		    
-		    long ans = 0;
-		    // for (j - sj = i - si)
-		    for(Long key : map1.keySet()){
-		        long val = map1.get(key);
-		        long num = (val * (val - 1))/2;
-		        ans += num;
-		    }
-		    
-		    // for (j + sj = i + si)
-		    for(Long key : map2.keySet()){
-		        long val = map2.get(key);
-		        long num = (val * (val - 1))/2;
-		        ans += num;
-		    }
-		    
-		    sb.append(ans + "\n");
-		}
-		
-		System.out.println(sb);
-	}
+            if (b1 != b2) {
+                ll num = (1ll << (i + 1)) - 1;
+                v.push_back(num);
+                curr_xor ^= num;
+            }
+        }
+
+        if (v.size() == 0) {
+            v.push_back(1);
+            v.push_back(1);
+        }
+
+        cout << v.size() << "\n";
+        for (int i = 0; i < v.size(); i++) {
+            cout << v[i] << " ";
+        }
+        cout << "\n";
+    }
 }
- 
+
+
 
 APPROACH 2
-
-video Link: https://www.youtube.com/watch?v=1-cDspWMv_k
-
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-
 class Codechef {
     public static void main(String[] args) throws java.lang.Exception {
         // your code goes here
@@ -84,21 +69,61 @@ class Codechef {
         int t = scn.nextInt();
         StringBuilder sb = new StringBuilder();
         while (t--> 0) {
-            int n = scn.nextInt();
-            scn.nextLine();
-            String str = scn.nextLine();
+            Long n = scn.nextLong();
 
-            int ans = 0;
-            for (int i = 0; i < n; i++) {
-                for (int j = i + 1; j < Math.min(n, i + 10); j++) {
-                    if (j - i == Math.abs(str.charAt(i) - str.charAt(j))) {
-                            ans++;
-                        }
+            // Edge Case
+            if (n == 0) {
+                sb.append("2\n1 1\n");
+                continue;
+            }
+
+            // Note: XOR of even 1's will make the answer '0' and XOR of odd 1's will make the answer '1'
+
+            // stores all the elements
+            ArrayList < Long > al = new ArrayList < > ();
+            
+            // we will check from highest bit to lowest
+            for (int i = 60; i >= 0; i--) {
+                /* checking the bit on ith position
+                    1. creating a number that has set bit on ith position and reset bits on other positions
+                    2. using "and" operator between number 'n' and temporary number 'num' 
+                    3. checking the ith bit by dividing it 'i' times
+                    4. if "and" operation gives '1' this means number 'n' has 1 else has 0
+                */
+                long num = 1L << i;
+
+                if (((num & n) >> i) == 1) {
+                    if (al.size() % 2 == 0) {
+                        // if we xor all the numbers present in the ArrayList, then at ith position we will get '0' (as number of elements present are even) but 
+                        // we want 1. So we have to add a number to change the bit
+
+                        // as we want all 1's from ith bit we can take a number which is 2^(i+1) and subtract 1 to get all 1's from ith bit
+                        long k = 1L << (i + 1);
+                        k--;
+                        al.add(k);
+                    }
+                } 
+                else {
+                    if (al.size() % 2 == 1) {
+                        // if we xor all the numbers present in the ArrayList, then at ith position we will get '1' (as number of elements present are odd) but 
+                        // we want 0. So we have to add a number to change the bit
+
+                        // as we want all 1's from ith bit we can take a number which is 2^(i+1) and subtract 1 to get all 1's from ith bit
+                        long k = 1L << (i + 1);
+                        k--;
+                        al.add(k);
                     }
                 }
-
-                sb.append(ans + "\n");
             }
-            System.out.println(sb);
+
+            // printing
+            sb.append(al.size() + "\n");
+            for (int i = 0; i < al.size(); i++) {
+                sb.append(al.get(i) + " ");
+            }
+            sb.append("\n");
         }
+
+        System.out.println(sb);
     }
+}
