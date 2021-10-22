@@ -11,57 +11,19 @@ The MEX of [0,3,1,2] is 4 because 0,1,2 and 3 belong to the array, but 4 does no
 Find the maximum possible MEX of an array of non-negative integers such that the bitwise OR of the elements in the array does not exceed X.
 
 
+Time Complexity: O(1) for each test case
+Space Complexity: O(1) for each test case
+
 Solution
 
 #include <bits/stdc++.h>
 #include <iostream>
 using namespace std;
 typedef long long ll;
-const ll INF = 1e9+7;
-const ll MOD = 998244353;
-typedef pair<ll,ll> ii;
-#define iii pair<ll,ii>
-#define f(i,a,b) for(ll i = a;i < b;i++)
-#define pb push_back
-#define vll vector<ll>
-#define F first
-#define S second
-#define all(x) (x).begin(), (x).end()
-
-ll mulMod(ll a, ll b){
-    ll ans = ((a % INF) * (b % INF)) % INF;
-    return ans;
-}
-
-ll modPow(ll a, ll b){
-        
-    ll ans = 1;
-    while(b > 0){
-        if((b & 1) != 0){
-            ans = mulMod(ans, a);
-        }
-        
-        b >>= 1;
-        a = mulMod(a, a);
-    }
-    
-    return ans;
-}
-    
-int largest_power(int n){
-    
-    int p = 1;
-    while(2 * p <= n){
-        p *= 2;
-    }
-    
-    return p;
-}
 
 int main(void){
     ios_base::sync_with_stdio(0);
-    cin.tie(0);
-    cout.tie(0);
+    cin.tie(0);    cout.tie(0);
     int t;  cin>>t;
     while(t--){
 
@@ -72,8 +34,7 @@ int main(void){
             continue;
         }
         
-    /* 
-    If the number 'n' is of the form (2^k - 1), then taking OR of all the values from [0 to n] will result in 'n'. So MEX will be 'n+1'.
+    /* if the number 'n' is of the form (2^k - 1), then taking OR of all the values from [0 to n] will result in 'n'. So MEX will be 'n+1'.
     
     But when the number is not of the form (2^k - 1), then taking OR of all the values from [0 to n] will result in (2^(k+1)), which will be greater than x. 
     Therefore, we have to take OR of few values only. Through observation we can see that if we take OR of all the values from [0 to (2^(k-1))], where k = number of binary 
