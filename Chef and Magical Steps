@@ -11,8 +11,66 @@ following things:
 Help Chef reach the Yth stair from the Xth stair in minimum number of steps.
 
 
-Time Complexity: O(N) for each test case
-Space Complexity: O(1) for each test case
-
+Precomputation Time Complexity: O(N.log(log(N))), where N = 10^7
+                                O(1) for each test case
+Precomputation Space Complexity: O(N), where N = 10^7
+                                 O(1) for each test case
+                                 
 Solution
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
 
+#define ll long long
+
+const int MAX_SIZE = 1e7;
+bool primes[MAX_SIZE + 1];
+int total_primes_till[MAX_SIZE + 1];
+
+void Sieve_of_Eratosthenes() {
+
+    int n = MAX_SIZE;
+
+    for (int i = 0; i < n; i++) {
+        primes[i] = true;
+    }
+
+    primes[0] = primes[1] = false;
+    total_primes_till[0] = 0;
+
+
+    // applying Sieve_of_Eratosthenes
+    for (int i = 2; i * i <= n; i++) {
+
+        if (primes[i] == false) {
+            continue;
+        }
+
+        for (int j = i * i; j <= n; j += i) {
+            primes[j] = false;
+        }
+    }
+
+
+    // counting the total_primes_till the ith number
+    for (int i = 1; i <= n; i++) {
+        total_primes_till[i] = total_primes_till[i - 1] + (primes[i] == true ? 1 : 0);
+    }
+}
+
+int main() {
+    // your code goes here
+    ios::sync_with_stdio(false);
+    cin.tie(0);    cout.tie(0);
+
+    Sieve_of_Eratosthenes();
+    
+    int t;    cin >> t;
+    while (t--> 0) {
+        ll x, y;        cin >> x >> y;
+
+        ll min_steps = (y - x) - (total_primes_till[y] - total_primes_till[x + 1]);
+        cout << min_steps << '\n';
+    }
+    return 0;
+}
