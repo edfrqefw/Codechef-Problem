@@ -76,7 +76,8 @@ int main(void){
             }
             
             cout<<"Yes\n";
-            // if max frequency is equal to longest non decreasing substring, this means that particular letter will fulfill the condition. Therefore, print each letter in reverse manner, as it will give lexigraphically largest string
+            // if max frequency is equal to longest non decreasing substring, this means that particular letter will fulfill the condition. Therefore, print each letter 
+            // in reverse manner, as it will give lexigraphically largest string
             if(max_freq == k){
                 // printing from back
                 for(int i=25; i>=0; i--){
@@ -91,7 +92,8 @@ int main(void){
             }
             
             
-            // when max frequency is less than longest non decreasing substring, this means we will need others letters to fulfill the condition. Therefore, printing some part in reverse order and remaining 'k' length in increasing order. This will give lexigraphically largest string
+            // when max frequency is less than longest non decreasing substring, this means we will need others letters to fulfill the condition. Therefore, printing some 
+            // part in reverse order and remaining 'k' length in increasing order. This will give lexigraphically largest string
             if(max_freq < k){
                 // printing some part in reverse manner
                 int reverse_count = 0;
