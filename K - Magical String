@@ -21,4 +21,99 @@ Time Complexity: O(N) for each test case
 Space Complexity: O(1) for each test case
 
 Solution
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+int main(void){
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);     cout.tie(0);
+    int t;  cin>>t;
+    while(t--){
+        int n;   cin>>n;
+        cin.ignore();
+        string str;     getline(cin, str);
+        
+        int** prefix_freq = new int*[n+1];
+        for(int i=0; i<26; i++){
+            prefix_freq[i] = new int[26];
+        }
+        
+        for(int i=0; i<26; i++){
+            prefix_freq[0][i] = 0;
+        }
+        
+        for(int i=0; i<n; i++){
+            for(int j=0; j<26; j++){
+                prefix_freq[i+1][j] = prefix_freq[i][j];
+            }
+            prefix_freq[i+1][str[i] - 'A']++;
+        }
+        
+        
+        int q;  cin>>q;
+        for(int query=0; query<q; query++){
+            int l, r, k;    cin>>l>>r>>k;
+            
+            int* freq = new int[26];
+            for(int i=0; i<26; i++){
+                freq[i] = prefix_freq[r][i] - prefix_freq[l-1][i];
+            }
+            
+            int max_freq = 0;
+            for(int i=0; i<26; i++){
+                max_freq = max(max_freq, freq[i]);
+            }
+            
+            if(max_freq > k  ||  r - l + 1 < k){
+                cout<<"No\n";
+                continue;
+            }
+            
+            cout<<"Yes\n";
+            if(max_freq == k){
+                for(int i=25; i>=0; i--){
+                    int val = freq[i];
+                    while(val > 0){
+                        cout<<((char)('A' + i));
+                        val--;
+                    }
+                }
+                cout<<"\n";
+                continue;
+            }
+            
+            if(max_freq < k){
+                int reverse_count = 0;
+                for(int i=25; i>=0; i--){
+                     int val = freq[i];
+                    while(val > 0  &&  reverse_count < r - l + 1 - k){
+                        cout<<((char)('A' + i));
+                        val--;
+                        reverse_count++;
+                    }
+                    
+                    if(reverse_count == r - l + 1 - k){
+                        break;
+                    }
+                }
+                
+                int forward_count = 0;
+                for(int i=0; i<25; i++){
+                    int val = freq[i];
+                    while(val > 0  &&  forward_count < k){
+                        cout<<((char)('A' + i));
+                        val--;
+                        forward_count++;
+                    }
+                    
+                    if(forward_count == k){
+                        break;
+                    }
+                }
+                cout<<"\n";
+            }
+        }
+    }
+}
 
