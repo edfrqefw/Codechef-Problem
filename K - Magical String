@@ -1,0 +1,24 @@
+Problem Name: K - Magical String 
+Problem Tag: MGSTR121
+Link: https://www.codechef.com/problems/MGSTR121
+
+Question
+You have been given a string S of size N which consists of uppercase characters only. A K-Magical String is a string in which the longest non - decreasing subsequence is 
+of size exactly K.
+You have been given Q queries where each query is in the form L,R, and K. For each query, check whether substring from index L to index R can be converted into a K-Magical 
+String or not by rearranging its characters and print the final rearranged string too.
+If there exist multiple answers, print the lexicographically largest string possible.
+Note:
+  1. Each query will be treated independently i.e. after each query the string will remain the same as it was initially.
+  2. The input files are large. The use of Fast I/O is recommended.
+
+
+Editorial Link: https://discuss.codechef.com/t/mgstr121-editorial/95495
+Video Link: https://youtu.be/5hace8uYXPc
+
+
+Time Complexity: O(N) for each test case
+Space Complexity: O(1) for each test case
+
+Solution
+
