@@ -13,6 +13,7 @@ Note:
   2. The input files are large. The use of Fast I/O is recommended.
 
 
+
 Editorial Link: https://discuss.codechef.com/t/mgstr121-editorial/95495
 Video Link: https://youtu.be/5hace8uYXPc
 
@@ -34,15 +35,9 @@ int main(void){
         cin.ignore();
         string str;     getline(cin, str);
         
-        int** prefix_freq = new int*[n+1];
-        for(int i=0; i<26; i++){
-            prefix_freq[i] = new int[26];
-        }
+        vector<vector<int>> prefix_freq(n+1, vector<int>(26, 0));
         
-        for(int i=0; i<26; i++){
-            prefix_freq[0][i] = 0;
-        }
-        
+        // finding all characters frequency in a prefix sum manner
         for(int i=0; i<n; i++){
             for(int j=0; j<26; j++){
                 prefix_freq[i+1][j] = prefix_freq[i][j];
@@ -50,28 +45,40 @@ int main(void){
             prefix_freq[i+1][str[i] - 'A']++;
         }
         
-        
+        // for each query
         int q;  cin>>q;
         for(int query=0; query<q; query++){
             int l, r, k;    cin>>l>>r>>k;
             
+            // k is greater than the total number of character in the range [l, r]
+            if((r - l + 1) < k){
+                cout<<"No\n";
+                continue;
+            }
+            
+            // finding the characters in the range [l, r]
             int* freq = new int[26];
             for(int i=0; i<26; i++){
                 freq[i] = prefix_freq[r][i] - prefix_freq[l-1][i];
             }
             
+            // finding max frequency of the character
             int max_freq = 0;
             for(int i=0; i<26; i++){
                 max_freq = max(max_freq, freq[i]);
             }
             
-            if(max_freq > k  ||  r - l + 1 < k){
+            // NOTE: THIS PART IS NOT COMPLETELY CORRECT
+            // if max frequency is greater than longest non decreasing substring
+            if(max_freq > k){
                 cout<<"No\n";
                 continue;
             }
             
             cout<<"Yes\n";
+            // if max frequency is equal to longest non decreasing substring, this means that particular letter will fulfill the condition. Therefore, print each letter in reverse manner, as it will give lexigraphically largest string
             if(max_freq == k){
+                // printing from back
                 for(int i=25; i>=0; i--){
                     int val = freq[i];
                     while(val > 0){
@@ -83,23 +90,28 @@ int main(void){
                 continue;
             }
             
+            
+            // when max frequency is less than longest non decreasing substring, this means we will need others letters to fulfill the condition. Therefore, printing some part in reverse order and remaining 'k' length in increasing order. This will give lexigraphically largest string
             if(max_freq < k){
+                // printing some part in reverse manner
                 int reverse_count = 0;
+                int total_reverse_count = r - l + 1 - k;
                 for(int i=25; i>=0; i--){
                      int val = freq[i];
-                    while(val > 0  &&  reverse_count < r - l + 1 - k){
+                    while(val > 0  &&  reverse_count < total_reverse_count){
                         cout<<((char)('A' + i));
                         val--;
                         reverse_count++;
                     }
                     
-                    if(reverse_count == r - l + 1 - k){
+                    if(reverse_count == total_reverse_count){
                         break;
                     }
                 }
                 
+                // printing some part in forward manner
                 int forward_count = 0;
-                for(int i=0; i<25; i++){
+                for(int i=0; i<=25; i++){
                     int val = freq[i];
                     while(val > 0  &&  forward_count < k){
                         cout<<((char)('A' + i));
@@ -116,4 +128,3 @@ int main(void){
         }
     }
 }
-
