@@ -1,0 +1,20 @@
+Problem Name: Subarray Sum
+Problem Tag: SUMSUB
+Link: https://www.codechef.com/problems/SUMSUB
+
+Question
+Chef has a sequence of N integers A1,A2,…,AN. He defines a function f(i,j) as follows:  
+      f(i,j)=Ai + max(Ai,Ai+1) + max(Ai,Ai+1,Ai+2) + ⋯ + max(Ai,Ai+1,…,Aj)    
+Chef tries to find the sum of f(i,j) over all (i,j) such that 1≤i≤j≤N (i.e∑i=1n∑j=inf(i,j)), but fails. Can you help him find the sum? Since the sum can be very large, 
+find it modulo (109+7).
+Note: Since the size of the input and output is large, please use fast input-output methods.
+
+
+Editorial Link: https://discuss.codechef.com/t/sumsub-editorial/95492
+Video Link: 
+
+
+Time Complexity: O(N) for each test case
+Space Complexity: O(N) for each test case
+
+Solution
