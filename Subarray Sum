@@ -79,7 +79,7 @@ int main(void){
         
         ll ans = 0;     // total sum
         std::vector<ll> dp(n+3);    // used for storing f(x) for a particular 'i'
-        std::stack<int> st;         // used for Next Greater Element
+        std::stack<int> st;         // used for finding Next Greater Element
         for(ll i=n; i>=1; i--){
             
             // removing all the elements which are smaller than the current element
