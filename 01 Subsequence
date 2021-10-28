@@ -153,10 +153,9 @@ int main(void){
 	        ll val = (ll)(zero[i]) * (ll)(suffix_one);
 	        ans += val;
 	        
-	        // counting number of ones after a particular zero
-	        if(i + 1 < zero.size()){
-	            suffix_one -= one[i];
-	        }
+	        // counting number of ones after a particular zero	        
+	    	suffix_one -= one[i];
+	        
 	    }
 	    
 	    cout<<ans<<"\n";
