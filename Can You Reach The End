@@ -49,8 +49,8 @@ int main(void){
 	       return a.row < b.row; 
 	    });
 	    // after sorting, the vectors will be arranged according order of the increasing row number
-	    // Also ATQ, every row will have a block, so the vector will have all rows in increasing order therefore it will help in finding the diagonal easily as now we need 
-      // to check only one corner
+	    // Also ATQ, every row will have a block, so the vector will have all rows in increasing order therefore it will help in finding the diagonal easily as now we 
+	    // need to check only one corner
 	    
 	    
 	    // now we have to check if there is a complete diagonal present or not from 
@@ -80,11 +80,11 @@ int main(void){
 	    
 	    
 	    /* if the diagonal is complete, then two cases can be possible which are 
-	    1. ToptoLeft is storing an index which has it's col equals to 1, that means all the blocks from that row to top row will make a complete diagonal to stop us from 
-      reaching down
+	    1. ToptoLeft is storing an index which has it's col equals to 1, that means all the blocks from that row to top row will make a complete diagonal to stop us 
+	    from reaching down
 	    
-	    2. DowntoRight is storing an index which has it's col equals to n, that means all the blocks from that row to lowest row will make a complete diagonal to stop us 
-      from reaching down
+	    2. DowntoRight is storing an index which has it's col equals to n, that means all the blocks from that row to lowest row will make a complete diagonal to stop 
+	    us from reaching down
 	    */
 	    if(v[ToptoLeft].col == 1  ||  v[DowntoRight].col == n){
 	        cout<<"No\n";
