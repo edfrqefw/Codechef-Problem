@@ -13,8 +13,8 @@ time, no wo officers can be in the same cell, and also no officer can be in the 
 he is eliminated (and the cell he was in becomes unoccupied). Note that the officer team will try to move to eliminate as few officers as possible. For example, 
 with P=[2,3,4] and C=6, then the next positions of the officers can be [1,2,3], [1,2,5], [1,4,5], or [3,4,5]. However, with P=[2,3,4] and C=5, the only possible set of 
 the next positions of the officers is [1,2,3].
-After the officer team's turn, Chef also moves to an adjacent unoccupied cell, or gets caught if he cannot find any adjacent unoccupied cell. The process then repeats until 
-either Chef is caught, or all officers are eliminated and Chef runs away.
+After the officer team's turn, Chef also moves to an adjacent unoccupied cell, or gets caught if he cannot find any adjacent unoccupied cell. The process then repeats 
+until either Chef is caught, or all officers are eliminated and Chef runs away.
 You need to find out the maximum number of officers that can be eliminated by Chef, and if Chef can run away or not.
 As a reminder, two cells with coordinates X and Y are adjacent if and only if |X−Y|=1.
 
