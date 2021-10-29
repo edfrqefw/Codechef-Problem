@@ -167,3 +167,70 @@ int main(void){
         }
     }
 }
+
+
+
+Time Complexity: O(N) for each test case
+Space Complexity: O(N) for each test case
+
+APPROACH 3
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+int main(void){
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);     cout.tie(0);
+    int t;  cin>>t;
+    while(t--){
+        int n;  cin>>n;
+        
+        unordered_map<int, int> map;
+        for(int i=0; i<n; i++){
+            int r, c;   cin>>r>>c;
+            int sum = r + c;
+            
+            if(map.find(sum) == map.end()){
+                map.insert({sum, 1});
+            }
+            else{
+                map[sum]++;
+            }
+        }
+        
+// as for a particular diagonal sum of row and column index is contant, therefore checking diagonal and finding if the number of elements present in the diagonal is equal 
+// to frequency or not. if equal this means we can block
+        
+        // checking for all diagonals
+        bool tag = false;
+        for(auto i : map){
+            int sum = i.first;
+            
+            // for diagonals above biggest diagonal
+            if(sum <= n){
+                int freq = sum - 1;
+                if(i.second == freq){
+                    tag = true;
+                    break;
+                }
+            }    
+            // for diagonals below the biggest diagonal (including the biggest diagonal)
+            else{
+                int freq = n - (sum - n - 1);
+                if(i.second == freq){
+                    tag = true;
+                    break;
+                }
+            }
+        }
+        
+        // we find a diagonal having all elements as block
+        if(tag == true){
+            cout<<"No\n";
+            continue;
+        }
+        else{
+            cout<<"Yes\n";
+        }
+    }
+}
