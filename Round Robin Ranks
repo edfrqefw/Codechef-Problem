@@ -66,7 +66,8 @@ int main(void){
     int t;  cin>>t;
     while(t--){
         ll n, k;    cin>>n>>k;
-        
+	
+	// Just an observation, check the video
         ll ans = 0ll;
 	    if(k == 1){
 	        ans = n-1;  // max wins for 1st position
